@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import GoalList from './components/GoalList/GoalList';
+import AddGoal from './components/AddGoal/AddGoal'
+import React, { useState } from 'react';
 
 function App() {
+
+  const [goalList, setGoalList] = useState([]);
+
+
+  const onAddGoalHandler = (newGoal) => {
+    // setGoalList(goalList.concat(newGoal));
+    setGoalList(previousGoals => goalList.concat(newGoal));
+
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='course-path' >
+      <h2 >React Native Learning Path</h2>
+      <AddGoal onAddGoal={onAddGoalHandler} />
+      <GoalList goals={goalList} />
     </div>
   );
 }
